@@ -10,7 +10,12 @@ import os
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Adw, Gdk
+
+#adding style.css
+css_provider = Gtk.CssProvider()
+css_provider.load_from_path('style.css')
+Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
 class MainWindow(Gtk.ApplicationWindow):
     #functional code
@@ -37,22 +42,38 @@ class MainWindow(Gtk.ApplicationWindow):
         self.box1.append(self.box7) 
 
 
+        #password de disk
+        self.label_pass = Gtk.Label(label = "new password for disk ( also root ! )")
+        self.box2.append(self.label_pass)
+        self.label_pass.set_css_classes(['size_all'])
+        self.input_line = Gtk.PasswordEntry()
+        self.box2.append(self.input_line)
+        self.input_line.set_css_classes(['zwo'])
         #size be default
         #self.set_default_size(600, 250)
         #self.set_title("PopDecryptor")
+
+        #id de disk
+        self.check = Gtk.CheckButton(label="add sdb")
+        self.check1 = Gtk.CheckButton(label="add sda")
+        self.check2 = Gtk.CheckButton(label="add sdc")
+        self.box2.append(self.check)
+        self.box2.append(self.check1)
+        self.box2.append(self.check2)
+
 
         #button for encrypt 
         self.button = Gtk.Button(label="Encrypt")
         self.button.connect('clicked', self.encrypt)
         self.box2.append(self.button) # Put button in the first of the two vertial boxes
-
-
-        #id de disk
-
+        self.button.set_css_classes(['ein'])
+        self.button.set_css_classes(['size_all'])
 
     def encrypt(self, button):
         ####  command for encrypt ####
         print(" GO !!! ")
+        if self.check.get_active() :
+            print("check")
 
 class MyApp(Adw.Application):
     def __init__(self, **kwargs):
