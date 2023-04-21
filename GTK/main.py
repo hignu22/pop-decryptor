@@ -64,7 +64,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.input_line.set_css_classes(['zwo'])
         #size be default
         #self.set_default_size(600, 250)
-        #self.set_title("PopDecryptor")
+        self.set_title("PopDecryptor")
 
         #id de disk
         self.check = Gtk.CheckButton(label="add sdb")

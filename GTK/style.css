@@ -16,6 +16,12 @@
 .drei{
     background-color: #499FAA;
 }
+.drei:hover{
+    color:#cccccc;
+}
+.drei:active{
+    color:#272727;
+}
 .header{
     background-color: #272727;
 }
