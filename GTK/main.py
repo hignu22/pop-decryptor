@@ -40,6 +40,19 @@ class MainWindow(Gtk.ApplicationWindow):
         self.box1.append(self.box5) 
         self.box1.append(self.box6) 
         self.box1.append(self.box7) 
+        
+        self.box2.set_css_classes(['pxs'])
+
+
+        self.header = Gtk.HeaderBar()
+        self.header.set_css_classes(['header'])
+        self.set_titlebar(self.header)
+        self.open_button = Gtk.Button(label="Info")
+        self.new_file    = Gtk.Button(label="New")
+        self.open_button.set_css_classes(['drei'])
+        self.new_file.set_css_classes(['drei'])
+        self.header.pack_start(self.open_button)
+        self.header.pack_start(self.new_file)
 
 
         #password de disk
