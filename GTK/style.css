@@ -21,6 +21,7 @@
 }
 .drei:active{
     color:#272727;
+    background-color: #F3AC2F;
 }
 .header{
     background-color: #272727;
@@ -28,4 +29,8 @@
 .pxs{
     margin-left: 40px;
     margin-right: 40px;
+    color : #cccccc;
+}
+.about_css{
+    background-color: #272727;
 }

@@ -6,6 +6,7 @@
 
 import sys
 import os 
+import subprocess
 
 import gi
 gi.require_version('Gtk', '4.0')
@@ -50,9 +51,11 @@ class MainWindow(Gtk.ApplicationWindow):
         self.open_button = Gtk.Button(label="Info")
         self.new_file    = Gtk.Button(label="New")
         self.open_button.set_css_classes(['drei'])
-        self.new_file.set_css_classes(['drei'])
+        self.new_file.set_css_classes   (['drei'])
         self.header.pack_start(self.open_button)
         self.header.pack_start(self.new_file)
+
+        self.open_button.connect('clicked', self.show_about)
 
 
         #password de disk
@@ -82,11 +85,36 @@ class MainWindow(Gtk.ApplicationWindow):
         self.button.set_css_classes(['ein'])
         self.button.set_css_classes(['size_all'])
 
+
+        ########-Dialog-Window-########
+        self.window_dialog = Gtk.Dialog()
+
     def encrypt(self, button):
         ####  command for encrypt ####
         print(" GO !!! ")
         if self.check.get_active() :
             print("check")
+            procs = subprocess.Popen(["cryptsetup luksAddKey /dev/sda"]
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            os.write(procs.stdin.fileno(), input_line.encode())
+
+    def info_func(self, open_button):
+        os.system('ls')
+    
+    def show_about(self, open_button ):
+        self.about = Gtk.AboutDialog()
+        self.about.set_transient_for(self)  # Makes the dialog always appear in from of the parent window
+        self.about.set_modal(self)  # Makes the parent window unresponsive while dialog is showing
+        self.about.set_authors(["HiGnu22"])
+        self.about.set_copyright("Copyright 2023 hignu22")
+        self.about.set_license_type(Gtk.License.GPL_2_0)
+        self.about.set_website("http://github.com/hignu22/pop-decryptor")
+        self.about.set_website_label("GitHub by PopDecryptor")
+        self.about.set_version("1.0")
+        self.about.set_logo_icon_name("de.hignu22.pop-decryptor")  # The icon will need to be added to appropriate location
+                                                 # E.g. /usr/share/icons/hicolor/scalable/apps/org.example.example.svg
+        self.about.show()
+        #self.about.set_css_classes(['about_css'])
 
 class MyApp(Adw.Application):
     def __init__(self, **kwargs):
