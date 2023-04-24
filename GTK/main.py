@@ -94,9 +94,23 @@ class MainWindow(Gtk.ApplicationWindow):
         print(" GO !!! ")
         if self.check.get_active() :
             print("check")
-            procs = subprocess.Popen(["cryptsetup luksAddKey /dev/sda"]
+            procs = subprocess.Popen(["cryptsetup luksAddKey /dev/sda"],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            os.write(procs.stdin.fileno(), input_line.encode())
+            os.write(procs.stdin.fileno(), self.input_line.encode())
+
+        elif self.check1.get_active() :
+            print("check")
+            procs = subprocess.Popen(["cryptsetup luksAddKey /dev/sdb"],
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            os.write(procs.stdin.fileno(), self.input_line.encode())
+        elif self.check1.get_active() :
+            print("check")
+            procs = subprocess.Popen(["cryptsetup luksAddKey /dev/sdc"],
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            os.write(procs.stdin.fileno(), self.input_line.encode())
+        else :
+            print(" --- ERROR 404 :( ")
+
 
     def info_func(self, open_button):
         os.system('ls')
