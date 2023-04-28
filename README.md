@@ -3,6 +3,10 @@ pop-decryptor -- this program is designed to change the password on media encryp
 
 <image src="j.png" alt="Текст с описанием картинки">
 
+
+<br/>hikko and hignu22 are the same developer<br/>
+
+
 attention !!!!!!
 _the program has been tested and is intended for fedora PopOs distributions , on all others there may be problems with rendering , especially in tile managers , and kde pasma_
 
