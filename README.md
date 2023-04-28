@@ -13,8 +13,9 @@ purposes :: <br/>
 
 
 #### install instruct ####
+version GTK4 
 
-_terminal :_
-git clone https://github.com/hignu22/pop-decryptor
-cd pop-decryptor/GTK
-python3 main.py
+_terminal :_<br/>
+git clone https://github.com/hignu22/pop-decryptor <br/>
+cd pop-decryptor/GTK <br/>
+python3 main.py <br>
