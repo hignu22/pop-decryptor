@@ -56,6 +56,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.header.pack_start(self.new_file)
 
         self.open_button.connect('clicked', self.show_about)
+        self.new_file.connect('clicked', self.info_func)
 
 
         #password de disk
@@ -94,7 +95,7 @@ class MainWindow(Gtk.ApplicationWindow):
         print(" GO !!! ")
         if self.check.get_active() :
             print("check")
-            procs = subprocess.Popen(["cryptsetup luksAddKey /dev/sda"],
+            procs = subprocess.Popen(["cryptsetup luksAddKey /dev/sda3"],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             os.write(procs.stdin.fileno(), self.input_line.encode())
 
@@ -113,20 +114,19 @@ class MainWindow(Gtk.ApplicationWindow):
 
 
     def info_func(self, open_button):
-        os.system('ls')
+        os.system('python3 info_win.py')
     
     def show_about(self, open_button ):
         self.about = Gtk.AboutDialog()
-        self.about.set_transient_for(self)  # Makes the dialog always appear in from of the parent window
-        self.about.set_modal(self)  # Makes the parent window unresponsive while dialog is showing
+        self.about.set_transient_for(self) 
+        self.about.set_modal(self)  
         self.about.set_authors(["HiGnu22"])
         self.about.set_copyright("Copyright 2023 hignu22")
         self.about.set_license_type(Gtk.License.GPL_2_0)
         self.about.set_website("http://github.com/hignu22/pop-decryptor")
         self.about.set_website_label("GitHub by PopDecryptor")
-        self.about.set_version("1.0")
-        self.about.set_logo_icon_name("de.hignu22.pop-decryptor")  # The icon will need to be added to appropriate location
-                                                 # E.g. /usr/share/icons/hicolor/scalable/apps/org.example.example.svg
+        self.about.set_version("1.0 alfa")
+        self.about.set_logo_icon_name()
         self.about.show()
         #self.about.set_css_classes(['about_css'])
 
